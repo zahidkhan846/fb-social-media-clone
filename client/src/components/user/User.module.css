@@ -1,0 +1,41 @@
+.userInfo {
+  color: gray;
+  font-size: 14px;
+}
+
+.userPostHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userPostList {
+  box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.25);
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+}
+
+.postContent {
+  margin: 1rem 0;
+}
+
+.contentFooter {
+  border-top: 1px solid lightgray;
+  display: flex;
+
+  gap: 1rem;
+
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+.likeCommCount {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.likeCommCount span {
+  color: gray;
+}

@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  height: 520px;
+  overflow-y: scroll;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.5rem;
+  box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}

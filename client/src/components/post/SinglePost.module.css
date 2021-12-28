@@ -1,0 +1,152 @@
+.listItem {
+  border-radius: 15px;
+  box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.postHeader {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.userInfo {
+  color: gray;
+}
+
+.postContent {
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid lightgray;
+  padding: 0.25rem 1rem;
+}
+
+.buttonGroup button {
+  text-transform: capitalize;
+}
+
+.contentFooter {
+  display: flex;
+
+  gap: 1rem;
+
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5rem 1rem;
+}
+
+.likeCommCount {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.likeCommCount span {
+  color: gray;
+}
+
+.commentDiv {
+  min-width: 500px;
+  padding: 0 1rem 1rem 1rem;
+  padding-top: 1rem;
+}
+
+.commentDiv ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.commentDiv header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.commenter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.username {
+  color: gray;
+}
+
+.commentContent {
+  font-size: 14px;
+  padding: 0.5rem;
+}
+
+.commentInput {
+  width: 100%;
+  border: none;
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  outline: 1px solid lightgray;
+}
+
+.commentInput:focus {
+  outline: 2px solid var(--primary-color);
+  border: none;
+}
+
+.commentList {
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.mt1 {
+  margin-top: 1rem;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectedPostContent {
+  padding: 0.5rem 1rem;
+}
+
+.btnGroup {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.link {
+  color: black;
+}
+
+.link:hover,
+.link:active {
+  color: var(--success-color);
+}

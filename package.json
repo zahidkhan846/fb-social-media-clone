@@ -1,0 +1,12 @@
+{
+  "name": "fb-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run dev",
+    "server": "cd functions && npm run serve"
+  },
+  "author": "",
+  "license": "ISC"
+}

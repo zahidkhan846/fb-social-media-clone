@@ -1,0 +1,27 @@
+.listItem a {
+  color: black;
+}
+
+.listItem {
+  padding: 0.5rem;
+  background-color: #daa20781;
+  margin-right: 0.5rem;
+  border-radius: 10px;
+  transition: all 300ms ease;
+}
+
+.listItem:nth-child(even) {
+  background-color: #f0304a7e;
+}
+
+.listItem:hover {
+  background-color: #daa107;
+}
+
+.listItem:nth-child(even):hover {
+  background-color: #f03049;
+}
+
+.listItem:hover.listItem a {
+  color: white;
+}

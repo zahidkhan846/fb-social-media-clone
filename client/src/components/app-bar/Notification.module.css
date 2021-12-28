@@ -1,0 +1,57 @@
+.notification {
+  padding: 0.5rem 1rem;
+  cursor: default;
+}
+
+.button {
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 2px 0 rgba(68, 49, 49, 0.25);
+  border-radius: 4px;
+  background-color: #f4f4f4;
+}
+
+.button:hover {
+  background-color: lightgray;
+}
+
+.flexEnd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.buttonDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.notification:nth-child(even) {
+  background-color: #f4f4f4;
+}
+
+.notification:hover {
+  background-color: #f3141411;
+}
+
+.notification:first-child:hover {
+  background-color: white;
+}
+
+.noNotification {
+  padding: 0.5rem 1rem;
+  cursor: default;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
