@@ -1,18 +1,19 @@
 const express = require("express");
 const database = require("./config/db");
 const cors = require("cors");
+const authRoutes = require("./routes/auth");
+
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(express.static("public"))
 
 app.use(cors());
 
-app.get("/api", (req, res) => {
-  res.send("<p>Hello from fb server.</p>");
-});
+app.use("/auth", authRoutes);
 
 app.listen(8080, async () => {
   try {
