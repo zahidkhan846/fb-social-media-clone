@@ -1,7 +1,13 @@
 const User = require("../model/user");
 const bcrypt = require("bcrypt");
-const { registerUserErrors, isEmail, isMin } = require("../utils/validators");
+const {
+  registerUserErrors,
+  isEmail,
+  isMin,
+  userFormValidator,
+} = require("../utils/validators");
 const jwt = require("jsonwebtoken");
+const noUserIamge = require("../utils/no-user");
 
 const registerUser = async (req, res) => {
   const userData = {
@@ -28,8 +34,7 @@ const registerUser = async (req, res) => {
       password: userData.password,
       username: userData.username,
       gender: userData.gender,
-      imageUrl:
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+      imageUrl: noUserIamge,
     };
     const isUsername = await User.findOne({
       username: userData.username,
@@ -109,93 +114,32 @@ const loginUser = async (req, res) => {
   }
 };
 
-const imageUpload = (req, res) => {
-  let imageName;
-  let imageUrl;
-  let image = { filePath: null, mimetype: null };
-
-  const busboy = new BusBoy({ headers: req.headers });
-  busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-    if (
-      mimetype !== "image/jpg" &&
-      mimetype !== "image/jpeg" &&
-      mimetype !== "image/png"
-    ) {
-      return res.status(400).json({
-        message: "Invalid image file type, (.jpg , .jpeg, .png images only!)",
-      });
-    }
-    const extension = filename.split(".")[filename.split(".").length - 1];
-    imageName = `${Math.round(Math.random() * 1000000000000)}.${extension}`;
-    const filePath = path.join(os.tmpdir(), imageName);
-    image = { filePath, mimetype };
-    file.pipe(fs.createWriteStream(filePath));
-  });
-
-  busboy.on("finish", async () => {
-    admin
-      .storage()
-      .bucket()
-      .upload(image.filePath, {
-        resumable: false,
-        metadata: { metadata: { contentType: image.mimetype } },
-      })
-      .then(() => {
-        imageUrl = `https://firebasestorage.googleapis.com/v0/b/${firebaseConfig.storageBucket}/o/${imageName}?alt=media`;
-        db.doc(`/users/${req.user.username}`).update({ imageUrl: imageUrl });
-        return db
-          .collection("posts")
-          .where("createdBy", "==", req.user.username)
-          .get()
-          .then((snapshot) => {
-            if (!snapshot.empty) {
-              snapshot.forEach((doc) => {
-                doc.ref.update({ creatorImageUrl: imageUrl });
-              });
-            }
-          })
-          .catch((err) => {
-            throw new Error(
-              "Something went wrong! [Image Upload/Update Posts User Image]"
-            );
-          });
-      })
-      .then(() => {
-        return res.json({ message: "Successfully uploaded!", imageUrl });
-      })
-      .catch((error) => {
-        res.status(500).json({
-          message: error.message,
-        });
-      });
-  });
-  busboy.end(req.rawBody);
-};
+const imageUpload = (req, res) => {};
 
 const addUserDetails = async (req, res) => {
-  res.send(req.user);
-  // const { bio, website, location, phone } = req.body;
+  const { bio, website, location, phone } = req.body;
 
-  // const errors = userFormValidator(bio, website, location, phone);
+  const errors = userFormValidator(bio, website, location, phone);
 
-  // if (Object.keys(errors).length > 0) {
-  //   return res.status(400).json(errors);
-  // }
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).json(errors);
+  }
 
-  // try {
-  //   await db
-  //     .doc(`/users/${req.user.username}`)
-  //     .update({ bio, website, location, phone });
+  try {
+    await User.findOneAndUpdate(
+      { username: req.user.username },
+      { bio, website, location, phone }
+    );
 
-  //   return res.status(201).json({
-  //     message: "Sucessfully updated!",
-  //     details: { bio, website, location, phone },
-  //   });
-  // } catch (error) {
-  //   res.status(500).json({
-  //     errors: { message: error.message },
-  //   });
-  // }
+    return res.status(201).json({
+      message: "Sucessfully updated!",
+      details: { bio, website, location, phone },
+    });
+  } catch (error) {
+    res.status(500).json({
+      errors: { message: error.message },
+    });
+  }
 };
 
 module.exports = {

@@ -11,6 +11,10 @@ const userSchema = new Schema(
     imageUrl: { type: String, required: false },
     username: { type: String, required: true },
     gender: { type: String, required: true },
+    bio: { type: String, required: false },
+    website: { type: String, required: false },
+    location: { type: String, required: false },
+    phone: { type: String, required: false },
   },
   { timestamps: true }
 );
