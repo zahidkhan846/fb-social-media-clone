@@ -114,7 +114,9 @@ const loginUser = async (req, res) => {
   }
 };
 
-const imageUpload = (req, res) => {};
+const imageUpload = (req, res) => {
+  res.send("<h1>Uploading image.</h1>");
+};
 
 const addUserDetails = async (req, res) => {
   const { bio, website, location, phone } = req.body;
