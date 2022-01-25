@@ -1,4 +1,4 @@
-const { db, admin } = require("../config/admin");
+const jwt = require("jsonwebtoken");
 
 exports.isAuth = async (req, res, next) => {
   let token;
@@ -11,16 +11,10 @@ exports.isAuth = async (req, res, next) => {
     return res.status(403).json({ message: "Unauthorized!" });
   }
   try {
-    const decodedToken = await admin.auth().verifyIdToken(token);
-    if (decodedToken.uid) {
-      const usersDocs = await db
-        .collection("users")
-        .where("userId", "==", decodedToken.uid)
-        .limit(1)
-        .get();
-      req.user = usersDocs.docs[0].data();
-      next();
-    }
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("DECODED TOKEN", decodedToken);
+    req.user = decodedToken;
+    next();
   } catch (error) {
     return res.status(403).json({ error, message: "Unauthorized" });
   }
