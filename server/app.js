@@ -19,7 +19,7 @@ app.use("/auth", authRoutes);
 app.listen(8080, async () => {
   try {
     await database();
-    console.log("Database connected!");
+    console.log("Database connected!🚀🚀🚀");
   } catch (error) {
     console.log("Something went wrong while connecting database.");
   }
